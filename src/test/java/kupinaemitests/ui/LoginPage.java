@@ -61,6 +61,10 @@ public class LoginPage {
         action.clickButton(loginButtonVlez);
     }
 
+    public void clickOnExitButton() {
+        action.clickButton(exitButton);
+    }
+
     public String getTitleMessage() {
         return action.getText(pageTitle);
     }

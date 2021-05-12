@@ -11,6 +11,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import kupinaemitests.ui.HomePage;
 import kupinaemitests.ui.LoginPage;
 import kupinaemitests.ui.RegistrationPage;
+import kupinaemitests.util.Constants;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.*;
@@ -369,6 +370,21 @@ public class StepDefinitions {
     @Then("page with {string} button is loaded")
     public void pageWithExitButtonIsLoaded(String expectedFundTransferSuccessMessage) {
         Assert.assertTrue(loginPage.getExitMessage().contains(expectedFundTransferSuccessMessage));
+    }
+
+    @Given("user is logged in")
+    public void userIsLoggedIn() {
+        loginPage = new LoginPage(driver);
+        loginPage.gotoPage();
+        loginPage.enterEmail(Constants.USERNAME);
+        loginPage.enterPassWord(Constants.PASSWORD);
+        loginPage.checkNotRobot();
+        loginPage.clickOnLoginButton();
+    }
+
+    @When("I click on exit button {string}")
+    public void clickOnExitButton(String log) {
+        loginPage.clickOnExitButton();
     }
 
 }
